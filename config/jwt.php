@@ -24,7 +24,7 @@ return [
     |
     */
 
-    'secret' => env('SVSyIgs7OhcgZWmKylmyKiG0UQB1pGhmhaL8PEkuz2f66P7y9lg1sGqiEImwvOvF'),
+    'secret' => 'SVSyIgs7OhcgZWmKylmyKiG0UQB1pGhmhaL8PEkuz2f66P7y9lg1sGqiEImwvOvF',
     /*
     |--------------------------------------------------------------------------
     | JWT Authentication Keys
