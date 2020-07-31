@@ -8,6 +8,10 @@ use Illuminate\Http\Request;
 class ApplyJobController extends Controller
 {
 
+    public function applied($id){
+      $data=ApplyJob::find($id);
+      return response()->json($data,200);
+    }   
     public function store(Request $request)
     {
         $this->validate($request, [
