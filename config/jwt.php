@@ -25,8 +25,7 @@ return [
     |
     */
 
-    'secret' => env('JWT_SECRET'),
-
+    'secret' => env('JWT_SECRET','SVSyIgs7OhcgZWmKylmyKiG0UQB1pGhmhaL8PEkuz2f66P7y9lg1sGqiEImwvOvF'), 
     /*
     |--------------------------------------------------------------------------
     | JWT Authentication Keys
