@@ -17,29 +17,37 @@ class AuthController extends Controller
 {
 
     public function register(Request $request){
-        $validator = Validator::make($request->all(), [
+        // $validator = Validator::make($request->all(), [
+        //     'name' => 'required|string|max:255',
+        //     'email' => 'required|string|email|max:255|unique:users',
+        //     'password' => 'required|string|min:6',
+        //     'role' => 'required|string',
+        // ]);
+
+        // if ($validator->fails()) {
+        //     return response()->json([
+        //         'code' => 400,
+        //         'status' => false,
+        //         'message' => "Register Failed"
+        //     ], 400);
+        // }
+        $this->validate($request, [
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:6',
             'role' => 'required|string',
         ]);
-
-        if ($validator->fails()) {
-            return response()->json([
-                'code' => 400,
-                'status' => false,
-                'message' => "Register Failed"
-            ], 400);
-        }
         // Create User
-        $input = $request->all();
-        $user = User::create($input);
-        $user->password = Hash::make($input['password']);
+        $user=new Managers();
+        $user->role=$request->role;
+        $user->email=$request->email;
+        $user->name=$request->name;
+        $user->password = Hash::make($request->password);
         $user->save();
 
         // Create profile
         $findId=User::all()->last()->id;
-        if($input['role']=='Manager') {
+        if($request->role=='Manager') {
             $table=new Managers();
             $table->phone=null;
             $table->address=null;
@@ -50,7 +58,7 @@ class AuthController extends Controller
             $table->user_id=$findId;
             $table->save();
         }
-        elseif($input['role']=='Applicant') {
+        elseif($request->role=='Applicant') {
             $table=new Applicant();
             $table->phone=null;
             $table->address=null;
@@ -68,7 +76,7 @@ class AuthController extends Controller
         //     $message->to($to_email, $to_name);
 
         // }
-        $token = auth()->attempt(['email' => $input['email'], 'password' => $input['password']]);
+        $token = auth()->attempt(['email' =>$request->email, 'password' =>$request->password]);
         return response()->json([
             'code'   => 200,
             'status' => true,
