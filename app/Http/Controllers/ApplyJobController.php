@@ -9,9 +9,9 @@ class ApplyJobController extends Controller
 {
 
     public function applied($id){
-      $data=ApplyJob::find($id);
+      $data=ApplyJob::where('manager_id',$id)->get();
       return response()->json($data,200);
-    }   
+    }
     public function store(Request $request)
     {
         $this->validate($request, [
