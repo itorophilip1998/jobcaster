@@ -15,11 +15,20 @@ class CreateApplyJobsTable extends Migration
     {
         Schema::create('apply_jobs', function (Blueprint $table) {
             $table->id();
-            $table->string('qualification');
-            $table->string('experience');
+            $table->string('name');
+            $table->string('phone');
+            $table->string('email');
+            $table->string('address');
+            $table->string('nationality');
+            $table->string('state');
+            $table->date('dob');
+            $table->string('gender');
             $table->text('about_you');
             $table->string('cv');
-            $table->unsignedBigInteger('applicant_id');
+            $table->string('qualification');
+            $table->string('experience');
+            $table->bigInteger('post_id');
+            $table->bigInteger('manager_id');
             $table->timestamps();
         });
     }

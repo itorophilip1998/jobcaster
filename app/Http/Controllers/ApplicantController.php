@@ -11,7 +11,7 @@ class ApplicantController extends Controller
 {
 
     public function update(Request $request, $id)
-    {
+    { 
             $table=Applicant::find($id);
             $table->phone=$request->phone;
             $table->address=$request->address;

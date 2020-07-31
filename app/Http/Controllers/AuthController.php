@@ -17,21 +17,7 @@ class AuthController extends Controller
 {
 
     public function register(Request $request){
-        dd($request->all());
-        // $validator = Validator::make($request->all(), [
-        //     'name' => 'required|string|max:255',
-        //     'email' => 'required|string|email|max:255|unique:users',
-        //     'password' => 'required|string|min:6',
-        //     'role' => 'required|string',
-        // ]);
 
-        // if ($validator->fails()) {
-        //     return response()->json([
-        //         'code' => 400,
-        //         'status' => false,
-        //         'message' => "Register Failed"
-        //     ], 400);
-        // }
         $this->validate($request, [
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
@@ -39,13 +25,12 @@ class AuthController extends Controller
             'role' => 'required|string',
         ]);
         // Create User
-        $user=new Managers();
+        $user=new User();
         $user->role=$request->role;
         $user->email=$request->email;
         $user->name=$request->name;
         $user->password = Hash::make($request->password);
-        $user->save();
-
+        $user->save(); 
         // Create profile
         $findId=User::all()->last()->id;
         if($request->role=='Manager') {
@@ -59,20 +44,7 @@ class AuthController extends Controller
             $table->user_id=$findId;
             $table->save();
         }
-        elseif($request->role=='Applicant') {
-            $table=new Applicant();
-            $table->phone=null;
-            $table->address=null;
-            $table->nationality=null;
-            $table->state=null;
-            $table->dob=now();
-            $table->gender=null;
-            $table->twitter=null;
-            $table->facebook=null;
-            $table->profile_photo=null;
-            $table->user_id=$findId;
-            $table->save();
-        }
+
         // Mail::send('emails.mail', $data, function($message) use ($to_name, $to_email) {
         //     $message->to($to_email, $to_name);
 
@@ -112,13 +84,19 @@ class AuthController extends Controller
     public function me()
     {
           $me=User::where('id',Auth::id())->with('applicants','managers')->get();
-            $message=[
-                'AuthUser' => $me,
-                'code' => 200,
-                'message' => "Logged In"
-            ];
+          $message=[
+            'AuthUser' => $me,
+            'code' => 200,
+            'message' => "Logged In"
+        ];
+          if($me)
+           {
             return response()->json($message);
-
+           }
+           else{
+            $message['message']='You are not Login';
+            return response()->json($message);
+           }
 
 
     }
