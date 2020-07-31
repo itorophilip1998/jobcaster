@@ -14,7 +14,7 @@ class ManagersController extends Controller
 
     public function update(Request $request, $id)
     {
-        $table=Managers::find($id);
+        $table=Managers::findornew($id);
         $table->phone=$request->phone;
         $table->address=$request->address;
         $table->company=$request->company;
@@ -34,7 +34,7 @@ class ManagersController extends Controller
             $message=[
                 'code' => 200,
                 'user' => User::where('id',$id)->with('managers')->get(),
-                'message' => "Logged In"
+                'message' => "Created"
             ];
             return response()->json($message);
     }

@@ -17,20 +17,19 @@ class AuthController extends Controller
 {
 
     public function register(Request $request){
-
+         dd($request->all());
         $this->validate($request, [
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:6',
-            'role' => 'required|string',
         ]);
         // Create User
         $user=new User();
-        $user->role=$request->role;
+        $user->role='Manager';
         $user->email=$request->email;
         $user->name=$request->name;
         $user->password = Hash::make($request->password);
-        $user->save(); 
+        $user->save();
         // Create profile
         $findId=User::all()->last()->id;
         if($request->role=='Manager') {

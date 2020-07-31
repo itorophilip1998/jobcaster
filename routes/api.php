@@ -23,8 +23,7 @@ Route::get('/job/{id}', 'PostingController@show');
 
 //ApplyJobs Route
 Route::post('/applyjob', 'ApplyJobController@store');
-Route::get('/myappliedjob/{id}', 'ApplyJobController@applied');
-// Route::post('/applyjob', 'ApplyJobController@store');
+Route::get('/myappliedjob/{id}', 'ApplyJobController@applied'); 
 
 //Manager Route
 Route::put('/updatemanager/{id}', 'ManagersController@update');
