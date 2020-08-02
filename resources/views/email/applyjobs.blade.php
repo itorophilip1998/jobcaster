@@ -10,22 +10,26 @@
     </head>
     <body>
        {{-- Apply Jobs --}}
-   <div id="app" class="container">
-    <header class="jumbotron jumbotron-fluid text-center py-3">
-            <h5><span class="text-muted">Job</span><span class="text-primary">Caster</span></h5>
+   <div style="padding: 0px 0px !important;border-radius: 5px !important;">
+    <header style="background-color:whitesmoke;text-align: center;border-radius: 3px; padding: 3px 3px;">
+            <h2><span style="color: grey;">Job</span><span style="color: royalblue;">Caster</span></h2>
     </header>
-    <main>
-         <p class="lead">
-            <b>Welcome Come to Jobcaster!!!</b>
-         </p>
-         <p>
-             <div class="alert alert-success" role="alert">
-               <i class="fa fa-bell" aria-hidden="true"></i>  <strong>This is to Notify You that your application has been successfully Uploaded to</strong>
-             </div>
-         </p>
-    </main>
-    <footer class="jumbotron text-center py-3 bg-secondary text-white">
-        <h6>&COPY; 2020 @ Jobcaster by Team</h6>
+    <div style="padding:10px;text-align: center;">
+     <br><br>
+             <div > 
+               <h4 style="text-align:center;">!Hello {{ $data['name'] }}</h4>
+                 Your application and Resume have been successfully uploaded to
+                 {{ $company }}  <br>
+                 Thank's for using jobcaster
+             </div>  <br><br> <br>
+    </div>
+    <footer style="padding:3px 3px;text-align:center !important;border-radius:3px!important;background:whitesmoke !important;opacity:70% !important">
+        <h6>©Copyright 2020 @ Jobcaster(HRMS)
+            <br>By<br>
+           Team A(Human Resource Management System) 
+            <br> 
+            <span style="color: grey !important;">For More Information contact us <a href="" style="color: royalblue !important;">https://jobcaster.netlify.com</a></span></h6>
+        
     </footer>
    </div>
 

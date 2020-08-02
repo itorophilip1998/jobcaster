@@ -10,6 +10,7 @@
  */
 
 return [
+
     /*
     |--------------------------------------------------------------------------
     | JWT Authentication Secret
@@ -24,7 +25,8 @@ return [
     |
     */
 
-    'secret' => 'SVSyIgs7OhcgZWmKylmyKiG0UQB1pGhmhaL8PEkuz2f66P7y9lg1sGqiEImwvOvF',
+    'secret' => env('JWT_SECRET'),
+
     /*
     |--------------------------------------------------------------------------
     | JWT Authentication Keys
@@ -100,6 +102,7 @@ return [
     */
 
     'ttl' => env('JWT_TTL', 20160),
+
     /*
     |--------------------------------------------------------------------------
     | Refresh time to live
